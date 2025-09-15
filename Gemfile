@@ -51,5 +51,10 @@ group :development, :test do
   gem "pry"
   gem "pry-byebug"
 
+  gem "sorbet"
+  gem "sorbet-runtime"
+
+  gem "tapioca"
+
   gem "rspec-rails"                      # RSpec for Rails
 end
