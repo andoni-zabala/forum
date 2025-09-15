@@ -1,13 +1,13 @@
+
 # typed: strict
 
 class CommunitiesController < ApplicationController
   extend T::Sig
-  before_action :set_community, only: %i[ show update destroy ]
 
-  # GET /communities
+  sig  { void }
   def index
-    @communities = Community.all
-
+    dto = read_dto
+    @communities = repository.read(dto: dto)
     render json: @communities
   end
 
@@ -16,39 +16,19 @@ class CommunitiesController < ApplicationController
     render json: @community
   end
 
-  # POST /communities
-  def create
-    @community = Community.new(community_params)
-
-    if @community.save
-      render json: @community, status: :created, location: @community
-    else
-      render json: @community.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /communities/1
-  def update
-    if @community.update(community_params)
-      render json: @community
-    else
-      render json: @community.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /communities/1
-  def destroy
-    @community.destroy!
-  end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_community
-      @community = Community.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def community_params
-      params.expect(community: [ :title, :description ])
-    end
+  # Only allow a list of trusted parameters through.
+  def community_params
+    params.expect(community: [ :title, :description ])
+  end
+
+  sig { returns(Communities::ReadDto) }
+  def read_dto
+    Communities::ReadDto.new(title: params[:title])
+  end
+
+  def repository
+    @repository ||= CommunitiesRepository.new
+  end
 end
