@@ -44,4 +44,12 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "rubocop", require: false            # Linting & formatting
+  gem "rubocop-rails", require: false      # Rails-specific rules
+  gem "solargraph"                         # Language server for Ruby
+  gem "pry"
+  gem "pry-byebug"
+
+  gem "rspec-rails"                      # RSpec for Rails
 end
