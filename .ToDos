@@ -1,0 +1,15 @@
+TO DOs:
+  - Readme
+  - Swagger
+  - Rspec
+  - Graphql
+  - User authentication
+  - Pagination
+  - Caching?
+  - Background jobs
+  - Docker
+  - CI/CD
+  - Deployment (Heroku, AWS, etc.)
+  - Monitoring and logging
+  - Rate limiting
+  - Websockets for real-time updates
