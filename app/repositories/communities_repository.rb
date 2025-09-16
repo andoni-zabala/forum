@@ -23,9 +23,12 @@ class CommunitiesRepository
     to_entity(community: community) if community
   end
 
-  sig { params(attributes: T::Hash[Symbol, T.untyped]).returns(Community) }
-  def create(attributes)
-    Community.create!(attributes)
+  sig { params(dto: Communities::CreateDto).returns(Entity) }
+  def create(dto:)
+    community = Community.new(title: dto.title, description: dto.description)
+    community.save!
+
+    to_entity(community: community)
   end
 
   sig { params(id: Integer, attributes: T::Hash[Symbol, T.untyped]).returns(T.nilable(Community)) }
