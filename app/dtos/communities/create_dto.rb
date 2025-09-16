@@ -5,6 +5,6 @@ module Communities
     extend T::Sig
 
     const :title, String
-    const :description, String
+    const :description, T.nilable(String)
   end
 end

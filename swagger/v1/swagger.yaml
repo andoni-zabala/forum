@@ -1,0 +1,200 @@
+openapi: 3.0.1
+info:
+  title: Forum API
+  version: v1
+  description: API documentation for the Forum application.
+  contact:
+    name: Andoni Zabala
+    email: andoni@example.com
+    url: https://example.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+  - url: https://api.example.com
+    description: Production server
+paths:
+  /api/communities:
+    get:
+      summary: List communities
+      tags:
+        - Communities
+      responses:
+        "200":
+          description: A JSON array of communities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Community"
+              examples:
+                sample:
+                  $ref: "#/components/examples/CommunityExample"
+    post:
+      summary: Create a community
+      tags:
+        - Communities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+              required:
+                - title
+            examples:
+              create:
+                summary: Create example
+                value:
+                  title: My Community
+                  description: A sample community
+      responses:
+        "201":
+          description: Community created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Community"
+              examples:
+                created:
+                  $ref: "#/components/examples/CommunityExample"
+        "422":
+          description: Unprocessable entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                error:
+                  $ref: "#/components/examples/ErrorExample"
+
+  /api/communities/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Retrieve a community
+      tags:
+        - Communities
+      responses:
+        "200":
+          description: Community object or null if not found
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: "#/components/schemas/Community"
+                  - type: "null"
+              examples:
+                sample:
+                  $ref: "#/components/examples/CommunityExample"
+    patch:
+      summary: Update a community
+      tags:
+        - Communities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+            examples:
+              update:
+                summary: Update example
+                value:
+                  title: Updated title
+                  description: Updated description
+      responses:
+        "200":
+          description: Community updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Community"
+              examples:
+                updated:
+                  $ref: "#/components/examples/CommunityExample"
+        "422":
+          description: Unprocessable entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                error:
+                  $ref: "#/components/examples/ErrorExample"
+    delete:
+      summary: Delete a community
+      tags:
+        - Communities
+      responses:
+        "200":
+          description: Community deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Community"
+              examples:
+                deleted:
+                  $ref: "#/components/examples/CommunityExample"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Community:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+      required:
+        - id
+        - title
+    Error:
+      type: object
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+  examples:
+    CommunityExample:
+      summary: A sample community
+      value:
+        id: 1
+        title: Example Community
+        description: A place to discuss example topics
+    ErrorExample:
+      summary: Validation errors
+      value:
+        errors:
+          title:
+            - "can't be blank"
+
+security:
+  - bearerAuth: []

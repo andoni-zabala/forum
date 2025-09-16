@@ -57,4 +57,7 @@ group :development, :test do
   gem "tapioca"
 
   gem "rspec-rails"                      # RSpec for Rails
+  gem "rswag-specs"
+  gem "rswag-api"
+  gem "rswag-ui"
 end

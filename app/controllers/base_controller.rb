@@ -52,7 +52,6 @@ class BaseController < ApplicationController
 
   sig { returns(IdDto) }
   def id_dto
-    binding.pry
     IdDto.new(id: params[:id].to_i)
   end
 
@@ -61,4 +60,7 @@ class BaseController < ApplicationController
 
   sig { abstract.returns(T::Struct) }
   def create_dto; end
+
+  sig { abstract.returns(T::Struct) }
+  def update_dto; end
 end

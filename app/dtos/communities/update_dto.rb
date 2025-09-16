@@ -4,7 +4,8 @@ module Communities
   class UpdateDto < T::Struct
     extend T::Sig
 
-    const :title, String
-    const :description, String
+    const :id, T.nilable(Integer)
+    const :title, T.nilable(String)
+    const :description, T.nilable(String)
   end
 end

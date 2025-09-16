@@ -6,7 +6,7 @@ TO DOs:
   - User authentication
   - Pagination
   - Caching?
-  - Background jobs
+  - Background jobs, events
   - Docker
   - CI/CD
   - Deployment (Heroku, AWS, etc.)
