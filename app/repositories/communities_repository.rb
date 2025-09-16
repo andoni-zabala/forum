@@ -17,9 +17,10 @@ class CommunitiesRepository
     end
   end
 
-  sig { params(id: Integer).returns(T.nilable(Community)) }
-  def find(id)
-    Community.find_by(id: id)
+  sig { params(dto: ShowDto).returns(T.nilable(Entity)) }
+  def find(dto:)
+    community = Community.find_by(dto.id)
+    to_entity(community)
   end
 
   sig { params(attributes: T::Hash[Symbol, T.untyped]).returns(Community) }
