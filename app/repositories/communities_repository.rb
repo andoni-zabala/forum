@@ -13,11 +13,7 @@ class CommunitiesRepository
     communities = Community.with_titles_like(dto.titles)
 
     communities.map do |community|
-      ::Entities::CommunityEntity.new(
-        id: community.id,
-        title: community.title,
-        description: community.description
-      )
+      to_entity(community)
     end
   end
 
