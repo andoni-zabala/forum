@@ -3,12 +3,12 @@
 require_relative "../entities/community_entity"
 require_relative "../models/community"
 
-class CommunitiesRepository
+class CommunitiesRepository < AbstractBaseRepository
   extend T::Sig
 
-  Entity = T.type_alias { ::Entities::CommunityEntity }
+  Entity = T.type_alias { CommunityEntity }
 
-  sig { params(dto: Communities::ReadDto).returns(T::Array[Entity]) }
+  sig { override.params(dto: Communities::ReadDto).returns(T::Array[Entity]) }
   def read(dto:)
     communities = Community.with_titles_like(dto.titles)
 
@@ -55,7 +55,7 @@ class CommunitiesRepository
 
   sig { params(community: Community).returns(Entity) }
   def to_entity(community:)
-    ::Entities::CommunityEntity.new(
+    CommunityEntity.new(
       id: community.id,
       title: community.title,
       description: community.description

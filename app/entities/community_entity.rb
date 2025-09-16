@@ -1,11 +1,9 @@
 # typed: strict
 
-module Entities
-  class CommunityEntity < T::Struct
-    extend T::Sig
+class CommunityEntity < T::Struct
+  extend T::Sig
 
-    const :id, Integer
-    const :title, String
-    const :description, String
-  end
+  const :id, Integer
+  const :title, String
+  const :description, String
 end

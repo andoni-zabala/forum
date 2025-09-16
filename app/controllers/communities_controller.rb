@@ -1,6 +1,6 @@
 # typed: strict
 
-class CommunitiesController < BaseController
+class CommunitiesController < AbstractBaseController
   extend T::Sig
 
   sig { override.void }

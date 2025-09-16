@@ -1,6 +1,6 @@
 # typed: strict
 
-class BaseController < ApplicationController
+class AbstractBaseController < ApplicationController
   extend T::Sig
   extend T::Helpers
   abstract!
