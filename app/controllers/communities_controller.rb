@@ -19,12 +19,14 @@ class CommunitiesController < BaseController
   end
 
   sig { override.void }
-  def destroy
+  def update
     super
   end
 
-  # GET /communities
-
+  sig { override.void }
+  def destroy
+    super
+  end
 
   private
 
@@ -38,6 +40,10 @@ class CommunitiesController < BaseController
     Communities::CreateDto.new(title: params[:title], description: params[:description])
   end
 
+  sig { override.returns(Communities::UpdateDto) }
+  def update_dto
+    Communities::UpdateDto.new(title: params[:title], description: params[:description])
+  end
 
   sig { override.returns(CommunitiesRepository) }
   def repository

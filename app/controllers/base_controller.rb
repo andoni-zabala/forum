@@ -30,6 +30,14 @@ class BaseController < ApplicationController
   end
 
   sig { void }
+  def update
+    dto = update_dto
+    entity = repository.update(dto: dto)
+
+    render json: entity
+  end
+
+  sig { void }
   def destroy
     dto = id_dto
     entity = repository.destroy(dto: dto)
@@ -47,7 +55,6 @@ class BaseController < ApplicationController
     binding.pry
     IdDto.new(id: params[:id].to_i)
   end
-
 
   sig { abstract.returns(T::Struct) }
   def read_dto; end

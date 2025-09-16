@@ -31,13 +31,14 @@ class CommunitiesRepository
     to_entity(community: community)
   end
 
-  sig { params(id: Integer, attributes: T::Hash[Symbol, T.untyped]).returns(T.nilable(Community)) }
-  def update(id, attributes)
-    community = find(id)
-    return nil unless community
+  sig { params(dto: Communities::UpdateDto).returns(T.nilable(Entity)) }
+  def update(dto:)
+    community = community_by_id(id: dto.id)
 
-    community.update!(attributes)
-    community
+    if community
+      community.update!(title: dto.title, description: dto.description)
+      to_entity(community: community)
+    end
   end
 
   sig { params(dto: IdDto).returns(T.nilable(Entity)) }
