@@ -1,7 +1,7 @@
 # typed: strict
 
 module Entities
-  class Community < T::Struct
+  class CommunityEntity < T::Struct
     extend T::Sig
 
     const :id, Integer

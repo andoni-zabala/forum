@@ -18,11 +18,6 @@ class CommunitiesController < ApplicationController
 
   private
 
-  # Only allow a list of trusted parameters through.
-  def community_params
-    params.expect(community: [ :title, :description ])
-  end
-
   sig { returns(Communities::ReadDto) }
   def read_dto
     Communities::ReadDto.new(title: params[:title])

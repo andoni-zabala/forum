@@ -1,14 +1,24 @@
 # typed: strict
 
-require_relative "../entities/community"
+require_relative "../entities/community_entity"
+require_relative "../models/community"
 
 class CommunitiesRepository
   extend T::Sig
 
-  sig { params(dto: Communities::ReadDto).returns(T::Array[::Entities::Community]) }
+  Entity = T.type_alias { ::Entities::CommunityEntity }
+
+  sig { params(dto: Communities::ReadDto).returns(T::Array[Entity]) }
   def read(dto:)
-    # Community.all.to_a
-    [ ::Entities::Community.new(id: 1, title: "Example", description: "An example community") ]
+    communities = Community.where("title LIKE ?", "%#{dto.title}%")
+
+    communities.map do |community|
+      ::Entities::CommunityEntity.new(
+        id: community.id,
+        title: community.title,
+        description: community.description
+      )
+    end
   end
 
   sig { params(id: Integer).returns(T.nilable(Community)) }
@@ -37,5 +47,16 @@ class CommunitiesRepository
 
     community.destroy
     true
+  end
+
+  private
+
+  sig { params(community: Community).returns(Entity) }
+  def to_entity(community)
+    ::Entities::CommunityEntity.new(
+      id: community.id,
+      title: community.title,
+      description: community.description
+    )
   end
 end
