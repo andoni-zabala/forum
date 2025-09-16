@@ -42,11 +42,11 @@ class CommunitiesController < AbstractBaseController
 
   sig { override.returns(Communities::UpdateDto) }
   def update_dto
-    Communities::UpdateDto.new(id: params[:id]&.to_i, title: params[:title], description: params[:description])
+    Communities::UpdateDto.new(id: params[:id], title: params[:title], description: params[:description])
   end
 
   sig { override.returns(CommunitiesRepository) }
   def repository
-    @repository ||= CommunitiesRepository.new
+    @repository ||= T.let(CommunitiesRepository.new, T.nilable(CommunitiesRepository))
   end
 end

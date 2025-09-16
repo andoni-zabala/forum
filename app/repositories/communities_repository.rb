@@ -6,7 +6,7 @@ require_relative "../models/community"
 class CommunitiesRepository < AbstractBaseRepository
   extend T::Sig
 
-  Entity = T.type_alias { CommunityEntity }
+  Entity = type_member { { fixed: CommunityEntity } }
 
   sig { override.params(dto: Communities::ReadDto).returns(T::Array[Entity]) }
   def read(dto:)
@@ -17,13 +17,13 @@ class CommunitiesRepository < AbstractBaseRepository
     end
   end
 
-  sig { params(dto: IdDto).returns(T.nilable(Entity)) }
+  sig { override.params(dto: IdDto).returns(T.nilable(Entity)) }
   def find(dto:)
     community = community_by_id(id: dto.id)
     to_entity(community: community) if community
   end
 
-  sig { params(dto: Communities::CreateDto).returns(Entity) }
+  sig { override.params(dto: Communities::CreateDto).returns(Entity) }
   def create(dto:)
     community = Community.new(title: dto.title, description: dto.description)
     community.save!
@@ -31,7 +31,7 @@ class CommunitiesRepository < AbstractBaseRepository
     to_entity(community: community)
   end
 
-  sig { params(dto: Communities::UpdateDto).returns(T.nilable(Entity)) }
+  sig { override.params(dto: Communities::UpdateDto).returns(T.nilable(Entity)) }
   def update(dto:)
     community = community_by_id(id: dto.id)
 
@@ -41,7 +41,7 @@ class CommunitiesRepository < AbstractBaseRepository
     end
   end
 
-  sig { params(dto: IdDto).returns(T.nilable(Entity)) }
+  sig { override.params(dto: IdDto).returns(T.nilable(Entity)) }
   def destroy(dto:)
     community = community_by_id(id: dto.id)
 
