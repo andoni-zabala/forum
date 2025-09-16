@@ -13,14 +13,14 @@ class CommunitiesRepository
     communities = Community.with_titles_like(dto.titles)
 
     communities.map do |community|
-      to_entity(community)
+      to_entity(community: community)
     end
   end
 
-  sig { params(dto: ShowDto).returns(T.nilable(Entity)) }
+  sig { params(dto: IdDto).returns(T.nilable(Entity)) }
   def find(dto:)
-    community = Community.find_by(dto.id)
-    to_entity(community)
+    community = community_by_id(id: dto.id)
+    to_entity(community: community) if community
   end
 
   sig { params(attributes: T::Hash[Symbol, T.untyped]).returns(Community) }
@@ -37,23 +37,29 @@ class CommunitiesRepository
     community
   end
 
-  sig { params(id: Integer).returns(T::Boolean) }
-  def destroy(id)
-    community = find(id)
-    return false unless community
+  sig { params(dto: IdDto).returns(T.nilable(Entity)) }
+  def destroy(dto:)
+    community = community_by_id(id: dto.id)
 
-    community.destroy
-    true
+    if community
+      community = community.destroy!
+      to_entity(community: community)
+    end
   end
 
   private
 
   sig { params(community: Community).returns(Entity) }
-  def to_entity(community)
+  def to_entity(community:)
     ::Entities::CommunityEntity.new(
       id: community.id,
       title: community.title,
       description: community.description
     )
+  end
+
+  sig { params(id: Integer).returns(T.nilable(Community)) }
+  def community_by_id(id:)
+    Community.find_by(id: id)
   end
 end

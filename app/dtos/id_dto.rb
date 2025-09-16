@@ -1,6 +1,6 @@
 # typed: strict
 
-class ShowDto < T::Struct
+class IdDto < T::Struct
   extend T::Sig
 
   const :id, Integer

@@ -15,8 +15,16 @@ class BaseController < ApplicationController
 
   sig { void }
   def show
-    dto = show_dto(id: params[:id])
+    dto = id_dto
     entity = repository.find(dto: dto)
+
+    render json: entity
+  end
+
+  sig { void }
+  def destroy
+    dto = id_dto
+    entity = repository.destroy(dto: dto)
 
     render json: entity
   end
@@ -29,8 +37,9 @@ class BaseController < ApplicationController
   sig { abstract.returns(T::Struct) }
   def read_dto; end
 
-  sig { params(id: String).returns(T::Struct) }
-  def show_dto(id:)
-    ShowDto.new(id: id.to_i)
+  sig { returns(IdDto) }
+  def id_dto
+    binding.pry
+    IdDto.new(id: params[:id].to_i)
   end
 end

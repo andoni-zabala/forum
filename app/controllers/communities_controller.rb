@@ -13,6 +13,11 @@ class CommunitiesController < BaseController
     super
   end
 
+  sig { override.void }
+  def destroy
+    super
+  end
+
   # GET /communities
 
 
