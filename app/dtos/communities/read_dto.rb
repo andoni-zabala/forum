@@ -4,6 +4,6 @@ module Communities
   class ReadDto < T::Struct
     extend T::Sig
 
-    const :title, String
+    const :titles, T.nilable(T::Array[String])
   end
 end

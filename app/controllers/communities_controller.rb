@@ -20,7 +20,7 @@ class CommunitiesController < ApplicationController
 
   sig { returns(Communities::ReadDto) }
   def read_dto
-    Communities::ReadDto.new(title: params[:title])
+    Communities::ReadDto.new(titles: params[:titles])
   end
 
   def repository

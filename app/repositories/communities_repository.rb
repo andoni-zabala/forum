@@ -10,7 +10,7 @@ class CommunitiesRepository
 
   sig { params(dto: Communities::ReadDto).returns(T::Array[Entity]) }
   def read(dto:)
-    communities = Community.where("title LIKE ?", "%#{dto.title}%")
+    communities = Community.with_titles_like(dto.titles)
 
     communities.map do |community|
       ::Entities::CommunityEntity.new(
