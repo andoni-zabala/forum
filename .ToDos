@@ -1,6 +1,7 @@
 TO DOs:
-  - Readme
+  - README # Improve as project grow
   - Interactors
+  - Webhooks
   - Swagger ✅
   - RSpec ✅
   - Graphql
