@@ -3,28 +3,28 @@ require "rails_helper"
 RSpec.describe CommunitiesController, type: :routing do
   describe "routing" do
     it "routes to #index" do
-      expect(get: "/communities").to route_to("communities#index")
+      expect(get: "/api/communities").to route_to("communities#index")
     end
 
     it "routes to #show" do
-      expect(get: "/communities/1").to route_to("communities#show", id: "1")
+      expect(get: "/api/communities/1").to route_to("communities#show", id: "1")
     end
 
 
     it "routes to #create" do
-      expect(post: "/communities").to route_to("communities#create")
+      expect(post: "/api/communities").to route_to("communities#create")
     end
 
     it "routes to #update via PUT" do
-      expect(put: "/communities/1").to route_to("communities#update", id: "1")
+      expect(put: "/api/communities/1").to route_to("communities#update", id: "1")
     end
 
     it "routes to #update via PATCH" do
-      expect(patch: "/communities/1").to route_to("communities#update", id: "1")
+      expect(patch: "/api/communities/1").to route_to("communities#update", id: "1")
     end
 
     it "routes to #destroy" do
-      expect(delete: "/communities/1").to route_to("communities#destroy", id: "1")
+      expect(delete: "/api/communities/1").to route_to("communities#destroy", id: "1")
     end
   end
 end
