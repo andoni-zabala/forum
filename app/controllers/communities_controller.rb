@@ -28,6 +28,12 @@ class CommunitiesController < AbstractBaseController
     super
   end
 
+  sig { override.void }
+  def rpc
+    # TODO: Implement in Base
+    # Get corresponding DTO, ex: TransformDto, DuplicateDto
+  end
+
   private
 
   sig { override.returns(Communities::ReadDto) }

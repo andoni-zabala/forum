@@ -45,6 +45,14 @@ class AbstractBaseController < ApplicationController
     render json: entity
   end
 
+  sig { void }
+  def rpc
+    dto = rpc_dto  # transform , #duplicate
+    entity = repository.rpc(dto: dto)
+
+    render json: entity
+  end
+
   private
 
   sig { abstract.returns(T.untyped) }
