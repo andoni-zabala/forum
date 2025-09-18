@@ -25,7 +25,7 @@ class CommunitiesRepository < AbstractBaseRepository
 
   sig { override.params(dto: Communities::CreateDto).returns(Entity) }
   def create(dto:)
-    community = Community.new(title: dto.title, description: dto.description)
+    community = Communities::CreateInteractor.new(dto: dto).call
     community.save!
 
     to_entity(community: community)

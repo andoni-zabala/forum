@@ -1,6 +1,19 @@
 # Forum API
 
+![Ruby](https://img.shields.io/badge/Ruby-3.3.x-CC342D?logo=ruby&logoColor=white)
+![Rails](https://img.shields.io/badge/Rails-8.0.2.1-D30001?logo=rubyonrails&logoColor=white)
+![RSpec](https://img.shields.io/badge/Tests-RSpec-blue?logo=ruby)
+![Sorbet](https://img.shields.io/badge/Typing-Sorbet-6E4AFF)
+
 A small, production-style Rails 8 JSON API demonstrating clean layering (Controllers → DTOs → Repositories → Entities), type-safety with Sorbet, request/repository specs with RSpec, and live API docs with RSwag.
+
+## Highlights
+
+- Clear, testable layering with DTOs, repositories, interactors and entities
+- End-to-end request specs using FactoryBot (minimal mocking)
+- Strong typing with Sorbet and generated RBIs via tapioca
+- Interactive OpenAPI docs at `/api-docs` (RSwag)
+- Concise development workflow: rspec, rubocop, sorbet
 
 ## Tech stack
 
