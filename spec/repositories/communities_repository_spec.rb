@@ -21,7 +21,7 @@ RSpec.describe CommunitiesRepository, type: :model do
     it "filters by titles" do
       community_one = create(:community, title: "Ruby Fans")
       community_two = create(:community, title: "Rails Lovers")
-      community_three = create(:community, title: "Elixir Wizards")
+      _community_three = create(:community, title: "Elixir Wizards")
 
       dto = Communities::ReadDto.new(titles: [ "Ruby", "Rails" ])
       entities = repo.read(dto: dto)

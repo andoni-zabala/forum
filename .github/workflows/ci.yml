@@ -97,6 +97,8 @@ jobs:
       - name: Prepare database
         run: |
           bin/rails db:prepare
+          # Safety: ensure test DB is clean (no seeds) before running tests
+          bin/rails runner 'if Rails.env.test?; ActiveRecord::Base.connection.execute(%(TRUNCATE TABLE #{(ActiveRecord::Base.connection.tables - ["schema_migrations","ar_internal_metadata"]).map{|t| ActiveRecord::Base.connection.quote_table_name(t)}.join(", ")} RESTART IDENTITY CASCADE)); end'
 
       - name: Run RSpec
         run: |

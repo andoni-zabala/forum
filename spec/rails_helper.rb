@@ -36,6 +36,20 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
+RSpec.configure do |config|
+  # Ensure a clean DB state before the suite in CI (and locally if needed)
+  config.before(:suite) do
+    # Truncate to remove any leftover seeded data
+    ActiveRecord::Base.establish_connection
+    conn = ActiveRecord::Base.connection
+    if conn.adapter_name.downcase.include?("postgres")
+      tables = conn.tables - [ "schema_migrations", "ar_internal_metadata" ]
+      conn.execute("TRUNCATE TABLE #{tables.map { |t| conn.quote_table_name(t) }.join(', ')} RESTART IDENTITY CASCADE") unless tables.empty?
+    end
+  end
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
