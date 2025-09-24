@@ -1,6 +1,10 @@
 # typed: true
 
 # Minimal reopenings to satisfy app type checking without conflicting with tapioca check.
+module ActionController; end
+class ActionController::API; end
+module ActiveJob; end
+class ActiveJob::Base; end
 
 class ActionMailer::Base
   def self.default(arg = T.unsafe(nil)); end
