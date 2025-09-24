@@ -177,10 +177,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.10-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.10-arm-linux-gnu)
-      racc (~> 1.4)
-    nokogiri (1.18.10-arm-linux-musl)
-      racc (~> 1.4)
     nokogiri (1.18.10-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-darwin)
@@ -216,7 +212,7 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
-    puma (7.0.3)
+    puma (7.0.4)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
@@ -432,8 +428,6 @@ PLATFORMS
   aarch64-linux
   aarch64-linux-gnu
   aarch64-linux-musl
-  arm-linux-gnu
-  arm-linux-musl
   arm64-darwin
   x86_64-darwin
   x86_64-linux
