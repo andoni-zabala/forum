@@ -17,7 +17,6 @@ class AbstractBaseInteractor
   sig { returns(Model) }
   def call
     ApplicationRecord.transaction do
-      binding.pry
       execute
     end
   end
