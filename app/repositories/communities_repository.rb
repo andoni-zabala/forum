@@ -58,7 +58,7 @@ class CommunitiesRepository < AbstractBaseRepository
     CommunityEntity.new(
       id: community.id,
       title: community.title,
-      description: community.description
+      description: T.must(community.description)
     )
   end
 

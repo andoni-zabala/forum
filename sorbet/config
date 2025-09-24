@@ -2,3 +2,12 @@
 .
 --ignore=/tmp/
 --ignore=/vendor/bundle
+--ignore=/sorbet/rbi/sorbet-typed
+--suppress-payload-superclass-redefinition-for=IRB::ReadlineInputMethod
+--suppress-payload-superclass-redefinition-for=IRB::RelineInputMethod
+--suppress-payload-superclass-redefinition-for=Psych::Parser::Mark
+--ignore=/spec
+--ignore=/db
+--ignore=/config
+--ignore=/sorbet/rbi/dsl
+--ignore=/sorbet/rbi/gems

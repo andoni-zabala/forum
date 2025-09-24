@@ -1,3 +1,4 @@
+# typed: strict
 require 'rails_helper'
 require 'rswag/specs'
 

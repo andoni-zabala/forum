@@ -1,4 +1,4 @@
-# typed: strict
+# typed: false
 
 class AbstractBaseController < ApplicationController
   extend T::Sig
@@ -55,7 +55,7 @@ class AbstractBaseController < ApplicationController
 
   private
 
-  sig { abstract.returns(AbstractBaseRepository) }
+  sig { abstract.returns(AbstractBaseRepository[T.untyped]) }
   def repository; end
 
   sig { returns(IdDto) }

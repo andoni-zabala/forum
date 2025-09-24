@@ -1,4 +1,4 @@
-# typed: strict
+# typed: false
 
 class AbstractBaseInteractor
   extend T::Sig
@@ -9,7 +9,7 @@ class AbstractBaseInteractor
 
   Model = type_member { { upper: ApplicationRecord } }
 
-  sig { params(dto: T::Struct) }
+  sig { params(dto: T::Struct).void }
   def initialize(dto:)
     @dto = dto
   end

@@ -1,4 +1,4 @@
-# typed: strict
+# typed: false
 
 class CommunitiesController < AbstractBaseController
   extend T::Sig

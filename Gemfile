@@ -56,7 +56,7 @@ group :development, :test do
   gem "sorbet"
   gem "sorbet-runtime"
 
-  gem "tapioca"
+  gem "tapioca", "~> 0.17"
 
   gem "rspec-rails"                      # RSpec for Rails
   gem "factory_bot_rails"
