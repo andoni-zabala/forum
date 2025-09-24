@@ -55,12 +55,13 @@ class AbstractBaseController < ApplicationController
 
   private
 
-  sig { abstract.returns(T.untyped) }
+  sig { abstract.returns(AbstractBaseRepository) }
   def repository; end
 
   sig { returns(IdDto) }
   def id_dto
-    IdDto.new(id: params[:id].to_i)
+    id = T.must(params[:id])
+    IdDto.new(id: id.to_i)
   end
 
   sig { abstract.returns(T::Struct) }

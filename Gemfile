@@ -48,6 +48,8 @@ group :development, :test do
   gem "rubocop", require: false            # Linting & formatting
   gem "rubocop-rails", require: false      # Rails-specific rules
   gem "solargraph"                         # Language server for Ruby
+  gem "ruby-lsp", require: false           # Ruby LSP for editor integration
+  gem "ruby-lsp-rails", require: false     # Rails extras for Ruby LSP
   gem "pry"
   gem "pry-byebug"
 
