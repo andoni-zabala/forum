@@ -10,7 +10,7 @@ TO DOs:
   - Caching?
   - Background jobs, events
   - Docker
-  - CI/CD
+  - CI/CD ✅
   - Deployment (Heroku, AWS, etc.)
   - Monitoring and logging
   - Rate limiting

@@ -26,6 +26,13 @@ jobs:
         run: |
           bin/rails zeitwerk:check
 
+      - name: Fail if binding.pry present
+        run: |
+          if git grep -n "binding\.pry" -- .; then
+            echo "Found binding.pry debug statements. Please remove them." >&2
+            exit 1
+          fi
+
   typecheck:
     runs-on: ubuntu-latest
     steps:
