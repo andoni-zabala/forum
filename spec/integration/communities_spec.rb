@@ -1,4 +1,5 @@
 # typed: false
+
 require 'swagger_helper'
 
 RSpec.describe 'Communities API', type: :request do
