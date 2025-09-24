@@ -28,8 +28,12 @@ jobs:
 
       - name: Fail if binding.pry present
         run: |
-          if git grep -n "binding\.pry" -- .; then
-            echo "Found binding.pry debug statements. Please remove them." >&2
+          FILES=$(git grep -l "binding\.pry" -- . || true)
+          if [ -n "$FILES" ]; then
+            echo "Found binding.pry debug statements in these files:" >&2
+            echo "$FILES" >&2
+            echo "\nMatches:" >&2
+            git grep -n "binding\.pry" -- . >&2
             exit 1
           fi
 
