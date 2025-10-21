@@ -201,7 +201,7 @@ GEM
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.5.1)
+    prism (1.6.0)
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -255,7 +255,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.0)
-    rbi (0.3.6)
+    rbi (0.3.7)
       prism (~> 1.0)
       rbs (>= 3.4.4)
     rbs (4.0.0.dev.4)
@@ -381,7 +381,7 @@ GEM
     sorbet-static-and-runtime (0.6.12566)
       sorbet (= 0.6.12566)
       sorbet-runtime (= 0.6.12566)
-    spoom (1.7.6)
+    spoom (1.7.9)
       erubi (>= 1.10.0)
       prism (>= 0.28.0)
       rbi (>= 0.3.3)
@@ -397,7 +397,7 @@ GEM
       net-ssh (>= 2.8.0)
       ostruct
     stringio (3.1.7)
-    tapioca (0.17.7)
+    tapioca (0.17.8)
       benchmark
       bundler (>= 2.2.25)
       netrc (>= 0.11.0)
